@@ -18,23 +18,42 @@
     <script type="text/babel">
         const animalsChoices = ["Cane", "Gatto", "Pappagallo", "Cavallo", "Panda"];
 
+        const { useState } = React;
+
+
+
         const Animali = () => {
 
-            return (
+            const [animali, setAnimali] = useState([]);
+
+            function addAnimale() {
+
+                const randomAnimale = animalsChoices[Math.floor(Math.random() * animalsChoices.length)]
+
+                setAnimali((prevAnimali) => [...prevAnimali, randomAnimale]);
+            }
+
+            return (<>
+                <button onClick={addAnimale}
+                >Aggiungi Animale
+                </button>
+
                 <details>
                     <summary>Animali</summary>
                     <ul>
-                        {animalsChoices.map((animal, i) => (
+                        {animali.map((animal, i) => (
                             <li key={i}>{animal}</li>
                         ))}
                     </ul>
                 </details>
-
+            </>
             )
 
         }
     </script>
 
+
+    <!-- Create Root -->
     <script type="text/babel">
 
 
@@ -62,6 +81,5 @@
         <p>Creato con amore da... un collega sbadato! 🐾</p>
     </footer>
 </body>
-<div class="lista-animali"></div>
 
 </html>
